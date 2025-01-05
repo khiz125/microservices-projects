@@ -2,6 +2,7 @@ import { Hono } from 'hono';
 import { logger } from 'hono/logger';
 
 import { randomBytes } from 'crypto';
+import { cors } from 'hono/cors';
 
 type Comments = {
   id: string;
@@ -17,6 +18,12 @@ const app = new Hono();
 const commentsByPostId: CommentsByPostId  = {};
 
 app.use('*', logger());
+app.use(
+  '/posts/*',
+  cors({
+    origin: ['http://localhost:3000/'],
+  })
+)
 
 app.get('/posts/:id/comments', (c): ReturnType<typeof c.json<Result<Comments[]>>> => {
   const postId = c.req.param('id');

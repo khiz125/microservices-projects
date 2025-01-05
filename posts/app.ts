@@ -2,6 +2,7 @@ import { Hono } from 'hono';
 import { logger } from 'hono/logger';
 
 import { randomBytes } from 'crypto';
+import { cors } from 'hono/cors';
 
 type Posts = {
   id: string;
@@ -17,7 +18,12 @@ const posts: PostsData = {};
 
 
 app.use('*', logger());
-
+app.use(
+  'http://localhost:4000/posts',
+  cors({
+    origin: ['http://localhost:3000/'],
+  })
+)
 app.get('/posts', (c): ReturnType<typeof c.json<Result<PostsData>>> => {
   if (c.error || !!posts.length) {
     return c.json({ ok: false, error: "Internal server error." }, 500);

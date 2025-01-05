@@ -14,7 +14,7 @@ export class CommentsApi implements ICommentApi {
     throw new Error('Internal server error.');
   }
   async create(id: string, content: string): Promise<Comments> {
-    const url = `http://localhost:4001/${id}/:id/comments`;
+    const url = `http://localhost:4001/posts/${id}/comments`;
     try {
       const res = await fetch(url, { method: "POST", body: content });
       if (res.ok) {
