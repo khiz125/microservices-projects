@@ -13,17 +13,17 @@ const PostCreate = () => {
       }
   }
   return (
-    <div>
+    <div className='my-4'>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="flex flex-col m-4 text-xl">
           <label>Title</label>
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="form-control"
+            className="border-b"
           />
         </div>
-        <button className="btn btn-primary">Submit</button>
+        <button className="rounded bg-slate-200">Submit</button>
       </form>
     </div>
   );

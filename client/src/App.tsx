@@ -4,7 +4,7 @@ import PostList from './components/PostList'
 function App() {
 
   return (
-    <div className="container">
+    <div className="mx-4">
       <h1>Create Post</h1>
       <PostCreate />
       <hr />

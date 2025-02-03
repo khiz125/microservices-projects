@@ -2,15 +2,16 @@
 import { useEffect, useState } from 'react'
 import CommentList from './CommentList';
 import CommentCreate from './CommentCreate';
-import { PostsApi, PostsData } from '../api/posts';
+import { PostsApi, Post } from '../api/posts';
 
 const PostList = () => {
   const postApi = new PostsApi();
-  const [posts, setPosts] = useState<PostsData>({});
+  const [posts, setPosts] = useState<Post[]>([]);
   const fetchPosts = async () => {
     const result = await postApi.findAll();
     if (result.ok) {
-      setPosts(result)
+      const posts:Post[] = Object.values(result.data);
+      setPosts(posts)
     }
   }
 
