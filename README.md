@@ -1,4 +1,4 @@
-# posts-service
+# microservice with minikube
 
 To install dependencies:
 
